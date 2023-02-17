@@ -8,11 +8,14 @@ using UnityEngine.UI;
 [RequireComponent(typeof(AudioSource))]
 public class CarController : MonoBehaviour
 {
+    [Header("Relations")]
     [SerializeField] private Rigidbody2D _carBody;
     [SerializeField] private WheelController _backWheel;
     [SerializeField] private WheelController _frontWheel;
     [SerializeField] private ToggleButton _speedDownButton;
     [SerializeField] private ToggleButton _speedUpButton;
+
+    [Header("Car parameters")]
     [SerializeField] private float _moveSpeed = 1000;
     [SerializeField] private float _moveSpeedMultiplier = 1.6f;
     [SerializeField] private float _rotationForce = 600f;
