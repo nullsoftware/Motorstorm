@@ -37,10 +37,10 @@ public class PlayerInfo : MonoBehaviour
 
     public float Score => _score;
     public float MaxScore => _maxScore;
+    public bool IsFuelEmpty => _fuel == 0;
 
     public bool IsActivelyUse { get; set; }
 
-    public bool IsFuelEmpty => _fuel == 0;
 
     private void Start()
     {
