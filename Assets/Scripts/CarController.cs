@@ -15,6 +15,7 @@ public class CarController : MonoBehaviour
     [SerializeField] private ToggleButton _speedUpButton;
     [SerializeField] private float _moveSpeed = 1000;
     [SerializeField] private float _moveSpeedMultiplier = 1.6f;
+    [SerializeField] private float _rotationForce = 600f;
 
     private Inputs _inputs;
     private Func<bool> _speedDownFunc;
@@ -28,7 +29,7 @@ public class CarController : MonoBehaviour
         _playerInfo = GetComponent<PlayerInfo>();
         _engineSound = GetComponent<AudioSource>();
 
-        if (Application.platform != RuntimePlatform.Android)
+        if (Application.platform == RuntimePlatform.Android)
         {
             _speedDownFunc = () => _speedDownButton.IsPressed;
             _speedUpFunc = () => _speedUpButton.IsPressed;
@@ -59,7 +60,6 @@ public class CarController : MonoBehaviour
         if (speedUp || speedDown)
         {
             Vector2 direction = _carBody.gameObject.transform.rotation * Vector2.up;
-            direction.Normalize();
 
             if (speedUp && speedDown)
             {
@@ -71,7 +71,7 @@ public class CarController : MonoBehaviour
 
                 if (!_frontWheel.IsGrounded)
                 {
-                    _carBody.AddForceAtPosition(direction, _frontWheel.transform.position, ForceMode2D.Force);
+                    _carBody.AddForceAtPosition(direction * _rotationForce * Time.deltaTime, _frontWheel.transform.position, ForceMode2D.Force);
                 }
             }
             else if (speedDown)
@@ -80,7 +80,7 @@ public class CarController : MonoBehaviour
 
                 if (!_backWheel.IsGrounded)
                 {
-                    _carBody.AddForceAtPosition(direction, _backWheel.transform.position, ForceMode2D.Force);
+                    _carBody.AddForceAtPosition(direction * _rotationForce * Time.deltaTime, _backWheel.transform.position, ForceMode2D.Force);
                 }
             }
 
