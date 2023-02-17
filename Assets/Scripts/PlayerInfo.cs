@@ -60,9 +60,9 @@ public class PlayerInfo : MonoBehaviour
         _maxScore = Mathf.Max(_maxScore, _score);
 
         if (IsActivelyUse)
-            _fuel = Mathf.Clamp(_fuel - _fuelActiveUsageMultiplier * Time.deltaTime, 0, 100);
+            _fuel = Mathf.Clamp(_fuel - _fuelActiveUsageMultiplier * Time.fixedDeltaTime, 0, 100);
         else
-            _fuel = Mathf.Clamp(_fuel - _fuelUsageMultiplier * Time.deltaTime, 0, 100);
+            _fuel = Mathf.Clamp(_fuel - _fuelUsageMultiplier * Time.fixedDeltaTime, 0, 100);
 
         UpdateFualProgressBar();
         UpdateScoreText();
