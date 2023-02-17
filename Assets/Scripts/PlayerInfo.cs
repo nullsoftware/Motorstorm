@@ -64,7 +64,7 @@ public class PlayerInfo : MonoBehaviour
         else
             _fuel = Mathf.Clamp(_fuel - _fuelUsageMultiplier * Time.fixedDeltaTime, 0, 100);
 
-        UpdateFualProgressBar();
+        UpdateFuelProgressBar();
         UpdateScoreText();
 
         // [TODO]: replace in separated class
@@ -121,12 +121,12 @@ public class PlayerInfo : MonoBehaviour
     public void CollectFuel(Fuel fuel)
     {
         _fuel = MathF.Min(100, _fuel + fuel.Amount);
-        UpdateFualProgressBar();
+        UpdateFuelProgressBar();
 
         _fuelCollectedSound?.Play();
     }
 
-    private void UpdateFualProgressBar()
+    private void UpdateFuelProgressBar()
     {
         _fuelProgressBar.fillAmount = _fuel / 100f;
     }
